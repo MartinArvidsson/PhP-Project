@@ -21,4 +21,6 @@ This will therefore be work in progress that i will look at when all other thing
 if i have the time
 1. Able to play a version of the game over internet / Shared URL.
 2. Highscore list (?)
-3. More to add...
+3. More to add at later time possibly...
+
+

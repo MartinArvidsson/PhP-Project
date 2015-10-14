@@ -2,12 +2,14 @@
 
 class Gameview
 {
+    private $PlayerMove;
     private $player = "X";
     private $board = array();
     private $gameOver = false;
     private $gameWon  = false;
     private $message;
     private $Boxcounter = 0;
+    private $TotalMoves = 0;
     public function __construct(Gamemodel $_Model)
     {
         $this->Model = $_Model;
@@ -52,7 +54,6 @@ class Gameview
         if($this->message == "")
         {
             $text = "<div id =\"board\">";
-           // return '<div id =\"board\">'
             $text .= "<table>";
 			for ($xlength = 0; $xlength < 3; $xlength++)
 			{
@@ -90,17 +91,31 @@ class Gameview
         {
             if($this->message !="Oavgjort!")
             {
-                return "";
+                $text ="<p>Du vann! spela en till match?</p>";
+                $text .= "<p><input type =\"Submit\" name =\"newgame\" value=\"Ny Match\"/></p>";
+                return $text;
                 //Skriv ut att person X/O vann
+                
+                
             }
             else
-            {
-                return "";
+            {  
+                
+                $text .= "<p><input type =\"Submit\" name =\"newgame\" value=\"Ny Match\"/></p>";
+                return $text;
                 //Skriv ut att person X/O spelade oavgjort
             }
         }
 
     }
+    public function RegisterMove()
+	{
+	    if(isset($_POST["PlayerMove"]))
+	    {
+	        return true;
+	    }
+	    return false;
+	}    
     
     public function GetMove()
     {

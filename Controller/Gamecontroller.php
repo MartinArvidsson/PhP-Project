@@ -10,7 +10,7 @@ class Gamecontroller
     public function Init()
     {
         $this->View->StartGame();
-        
+
         return $this->View;
     }
 }

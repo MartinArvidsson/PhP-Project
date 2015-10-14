@@ -7,7 +7,7 @@ class Gameview
     private $gameOver = false;
     private $gameWon  = false;
     private $message;
-    
+    private $Boxcounter = 0;
     public function __construct(Gamemodel $_Model)
     {
         $this->Model = $_Model;
@@ -35,7 +35,11 @@ class Gameview
                 $this->board[$xlength][$ylength] = null;
             }
         }
-        $this->DisplayBoard();
+    }
+    
+    public function response()
+    {
+        return $this->DisplayBoard();
     }
     
     private function DisplayBoard()
@@ -44,16 +48,19 @@ class Gameview
         $this->message = $this->Model->getMessage();
         
         //Behvöer kolla på detta http://php.net/manual/en/function.addslashes.php , verkar vara bättre lösning
+        //Fullösning genom att spara som variabel tills vidare, vet inte hur for-loop i return görs annars.
         if($this->message == "")
         {
-            echo "<div id ="'.board.'">";
+            $text = "<div id =\"board\">";
+           // return '<div id =\"board\">'
             
 			for ($xlength = 0; $xlength < 3; $xlength++)
 			{
+			    $text .= "<tr>";
 				for ($ylength = 0; $ylength < 3; $ylength++)
 				{
-					echo "<div class="'.board_cell.'">";
-					
+				    $this->Boxcounter ++;
+					$text .= "<td =\"board_cell\">";
 					if($this->board[$xlength][$ylength])
 					{
 					    //Redan valt alternativ, skriv ut matchande bild. WIP
@@ -61,30 +68,33 @@ class Gameview
 					else
 					{
 					    //Annars välj alternativ, Första val tomt, andra val X eller O beronde på spelare.
-					    echo "<select name="'.{x}_{y}.'">
-					            <option value=".."></option>
-					            <option value="'.{$this->player}.'">{this->player}</option>
+					    $text .= "<select name= \"Box$this->Boxcounter\">
+					            <option value=\"\"></option>
+					            <option value=\"{$this->player}\">{this->player}</option>
 					          </select>";
 					    
 					}
 					
-					echo"</div>";
+					$text .= "</div>";
                 }
-                echo "<div class="'.Button.'"></div>";
+                $text .= "<div class=\"Button\"></div>";
 			}
 			//Knapp för att registrera att man har gjort sitt drag
-			echo "<input type="'.submit.'" name="'.playerMove.'" value"'.Make your move! it is player {$this->player}:s turn to choose.'"/>
+			$text .= "<input type=\"submit\" name=\"playerMove\" value=\"Make your move! it's player {$this->player}:s turn to choose.\"/>
 			</div>";
+			return $text;
         }
         //Om det inte är tom sträng har man antingen vunnit eller spelat lika, det kollas här i else.
         else
         {
             if($this->message !="Oavgjort!")
             {
+                return "";
                 //Skriv ut att person X/O vann
             }
             else
             {
+                return "";
                 //Skriv ut att person X/O spelade oavgjort
             }
         }

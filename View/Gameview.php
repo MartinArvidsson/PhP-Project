@@ -53,7 +53,7 @@ class Gameview
         {
             $text = "<div id =\"board\">";
            // return '<div id =\"board\">'
-            
+            $text .= "<table>";
 			for ($xlength = 0; $xlength < 3; $xlength++)
 			{
 			    $text .= "<tr>";
@@ -70,18 +70,19 @@ class Gameview
 					    //Annars välj alternativ, Första val tomt, andra val X eller O beronde på spelare.
 					    $text .= "<select name= \"Box$this->Boxcounter\">
 					            <option value=\"\"></option>
-					            <option value=\"{$this->player}\">{this->player}</option>
+					            <option value=\"$this->player\">$this->player</option>
 					          </select>";
 					    
 					}
-					
-					$text .= "</div>";
+					$text .= "</td>";
                 }
-                $text .= "<div class=\"Button\"></div>";
 			}
+			$text .="</table>";
+			$text .="<div id = \"button\">";
 			//Knapp för att registrera att man har gjort sitt drag
 			$text .= "<input type=\"submit\" name=\"playerMove\" value=\"Make your move! it's player {$this->player}:s turn to choose.\"/>
 			</div>";
+			$text .="</div>";
 			return $text;
         }
         //Om det inte är tom sträng har man antingen vunnit eller spelat lika, det kollas här i else.

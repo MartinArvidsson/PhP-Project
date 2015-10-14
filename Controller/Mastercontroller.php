@@ -20,17 +20,17 @@ class Mastercontroller
         $Menucontroller = new Menucontroller($Menuview);
         
         $Gamemodel = new Gamemodel();
-        $Gameview = new Gameview();
+        $Gameview = new Gameview($Gamemodel);
         $Gamecontroller = new Gamecontroller($Gameview,$Gamemodel);
         
-        if(isset($_GET["Game"]))
-        {
-            $this->v = $Gamecontroller->Init();
-        }
-        else
-        {
-            $this->v = $Menucontroller->Init();
-        }
+        // if(isset($_GET["Game"]))
+        // {
+             $this->v = $Gamecontroller->Init();
+        // }
+        // else
+        // {
+        //     $this->v = $Menucontroller->Init();
+        // }
         $Layout->render($this-v);
     }
 }

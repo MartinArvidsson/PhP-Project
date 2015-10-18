@@ -2,7 +2,7 @@
 
 class Gameview
 {
-    private $PlayerMove;
+    private static $PlayerMove = 'Gameview:play';
     private $player = "X";
     private $board = array();
     private $gameOver = false;
@@ -79,8 +79,7 @@ class Gameview
 			$text .="</table>";
 			$text .="<div id = \"button\">";
 			//Knapp för att registrera att man har gjort sitt drag
-			$text .= "<input type=\"submit\" name=\"PlayerMove\" value=\"Make your move! it's player {$this->player}:s turn to choose.\"/>
-			</div>";
+			$text .= "<input type=\"submit\" name=".Self::$PlayerMove." value=\"Play\"/></div>";
 			$text .="</div>";
 			return $text;
         }
@@ -137,12 +136,11 @@ class Gameview
 	
     public function Doesuserwanttomove()
     {
-	    if(isset($_POST["PlayerMove"]))
+	    if(isset($_POST[Self::$PlayerMove]))
 	    {
 	        
 	        return true;
 	    }
-	    var_dump($this->response());
 	    return false;
 	}
     

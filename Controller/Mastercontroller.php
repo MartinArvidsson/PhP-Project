@@ -11,14 +11,14 @@ require_once("Model/Gamemodel.php");
 
 class Mastercontroller
 {
-    //private $v;
+    
     public function Startapplication()
     {
         $Layout = new LayoutView();
 
-        //$Menumodel = new Menumodel();        
-        //$Menuview = new Menuview();
-        //$Menucontroller = new Menucontroller($Menuview);
+        $Menumodel = new Menumodel();        
+        $Menuview = new Menuview();
+        $Menucontroller = new Menucontroller($Menuview,$Menumodel);
         
         $Gamemodel = new Gamemodel();
         $Gameview = new Gameview($Gamemodel); 
@@ -30,7 +30,7 @@ class Mastercontroller
         }
         else
         {
-           $this->v = $Menucontroller->Init();
+           $v = $Menucontroller->Init();
         }
         $Layout->render($v);
     }

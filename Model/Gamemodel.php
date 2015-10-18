@@ -12,34 +12,7 @@ class GameModel
         
         $this->Checkforwinner($this->board,$this->totalMoves);
     }
-    
-    function TryMove($gamedata)
-	{
-	    
-		$gamedata = array_unique($gamedata);
-		
-		foreach ($gamedata as $key => $value)
-		{
-			if ($value == $this->player)
-			{	
-				//update the board in that position with the player's X or O 
-				$coords = explode("_", $key);
-				$this->board[$coords[0]][$coords[1]] = $this->player;
 
-				//change the turn to the next player
-				if ($this->player == "X")
-					$this->player = "O";
-				else
-					$this->player = "X";
-					
-				$this->totalMoves++;
-			}
-		}
-	
-		if ($this->isOver())
-			return;
-	}
-    
     public function getMessage()
     {
         return $this->gamemessage;

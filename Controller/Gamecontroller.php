@@ -11,6 +11,15 @@ class Gamecontroller
     {
         $this->View->StartGame();
 
-        return $this->View;
+        if($this->View->Doesuserwanttomove() == true)
+        {
+            $this->View->MakeaMove();
+            //Om man trycker gör move ,, gör TryMove i view, sen Checkforwinner i model.  TODO
+            $this->Model->Checkforwinner($this->View->Getcurrentboard,$this->View->GetMovesMade);
+        }
+        else
+        {
+            return $this->View;
+        }
     }
 }

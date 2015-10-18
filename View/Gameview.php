@@ -108,18 +108,57 @@ class Gameview
         }
 
     }
-    public function RegisterMove()
+    
+    public function MakeaMove()
+    {
+        $this->Trytomove();
+    }
+    
+        
+    private function Trytomove()
+	{
+	    
+		$boardtoval = array_unique() = $this->Getcurrentboard();
+		
+		foreach ($boardtoval as $key => $value) //Kollar varje rad
+		{
+			if ($value == $this->player) //Om ett värde matchar spelarnamnet (en ruta har X på spelare X:s runda)
+			{	
+				//update the board in that position with the player's X or O 
+				$coords = explode("_", $key);
+				$this->board[$coords[0]][$coords[1]] = $this->player;
+
+				//change the turn to the next player
+				if ($this->player == "X")
+					$this->player = "O";
+				else
+					$this->player = "X";
+					
+				$this->totalMoves++;
+			}
+		}
+	
+		if ($this->isOver())
+			return;
+	}
+	
+    public function Doesuserwanttomove()
 	{
 	    if(isset($_POST["PlayerMove"]))
 	    {
 	        return true;
 	    }
 	    return false;
-	}    
+	}
     
-    public function GetMove()
+    public function Getcurrentboard()
     {
-        
+        return $this->board;
     }
     
+    public function GetMovesMade()
+    {
+        return $this->totalMoves;
+    }
+
 }

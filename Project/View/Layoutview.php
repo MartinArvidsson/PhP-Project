@@ -11,7 +11,7 @@ class LayoutView
           <title>PhP Project</title>
         </head>
         <body>
-          <h1>Tic-Tac-Toe</h1>
+          <h1>Luffarschack</h1>
           <div class="container">
               ' . $v->response() . '
           </div>

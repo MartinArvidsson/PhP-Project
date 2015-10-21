@@ -24,14 +24,14 @@ class Mastercontroller
         $Gameview = new Gameview($Gamemodel); 
         $Gamecontroller = new Gamecontroller($Gameview,$Gamemodel);
         
-        if(!isset($_GET["Game"])) //WIP, Gamesidan finns inte i dagsläget
-        {
-            $v = $Gamecontroller->Init();
-        }
-        else
-        {
-           $v = $Menucontroller->Init();
-        }
+        // if(isset($_GET["Game"])) //WIP, Gamesidan finns inte i dagsläget
+        // {
+        //   $v = $Menucontroller->Init();
+        // }
+        // else
+        // {
+           $v = $Gamecontroller->Init();
+        // }
         $Layout->render($v);
     }
 }

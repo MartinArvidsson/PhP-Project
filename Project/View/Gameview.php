@@ -2,7 +2,7 @@
 
 class Gameview
 {
-    private static $PlayerMove = 'Gameview:play';
+    private static $PlayerMove = 'Gameview::Play';
     private $player = "X";
     private $board = array();
     private $gameOver = false;
@@ -10,6 +10,9 @@ class Gameview
     private $message;
     private $Boxcounter = 0;
     private $TotalMoves = 0;
+    private $boarddata = array();
+    private $valuetoremove = array();
+   
     public function __construct(Gamemodel $_Model)
     {
         $this->Model = $_Model;
@@ -18,20 +21,21 @@ class Gameview
     
     public function startGame()
     {
-        $this->gameOver = false;
-        $this->gameWon = false;
-        
         $this->Trytomove();
     }
 
     
     public function response()
     {
+        
         return $this->DisplayBoard();
     }
     
     private function DisplayBoard()
     {
+        $this->gameOver = false;
+        $this->gameWon = false;
+        
         $this->board = array(); //Återställer spelplanen till 0
         
         
@@ -50,8 +54,11 @@ class Gameview
         //Fullösning genom att spara som variabel tills vidare, vet inte hur for-loop i return görs annars.
         if($this->message == "")
         {
-            $text = "<div id =\"board\">";
-            $text .= "<table>";
+            $text = "
+                <div id =\"board\">
+                    <form method=\"post\">
+                        <table>
+            ";
 			for ($xlength = 0; $xlength < 3; $xlength++)
 			{
 			    $text .= "<tr>";
@@ -62,26 +69,32 @@ class Gameview
 					if($this->board[$xlength][$ylength])
 					{
 					    //Redan valt alternativ, skriv ut matchande bild. WIP
-					    $text .= "<img src=\"Pictures/{$this->board[$x][$y]}.png\" alt=\"{$this->board[$x][$y]}\" title=\"{$this->board[$x][$Y]}\" />";
+					    $text .= "<img src=\"Pictures/{$this->board[$x][$y]}.png\" alt=\"{$this->board[$x][$y]}\" title=\"{$this->board[$x][$y]}\" />";
 					}
 					else
 					{
 					    //Annars välj alternativ, Första val tomt, andra val X eller O beronde på spelare.
-					    $text .= "<select name= \"Box$this->Boxcounter\">
+					    $text .= "
+					        <select name= \"Box$this->Boxcounter\">
 					            <option value=\"\"></option>
 					            <option value=\"$this->player\">$this->player</option>
-					          </select>";
+					        </select>
+					        ";
 					    
 					}
 					$text .= "</td>";
                 }
 			}
-			$text .="</table>";
-			$text .="<div id = \"button\">";
-			//Knapp för att registrera att man har gjort sitt drag
-			$text .= "<input type=\"submit\" name=".Self::$PlayerMove." value=\"Play\"/></div>";
-			$text .="</div>";
+			$text .="
+        			    </table>
+            			<div id = \"button\">
+                            <input type=\"submit\" name=".self::$PlayerMove." value=\"Play\"/>
+                        </div>
+                    </form>
+                </div>
+            ";
 			return $text;
+			//Knapp för att registrera att man har gjort sitt drag
         }
         //Om det inte är tom sträng har man antingen vunnit eller spelat lika, det kollas här i else.
         else
@@ -109,15 +122,16 @@ class Gameview
         
     private function Trytomove()
 	{
-	    
-		$boardtoval = array_unique($this->Getcurrentboard());
-		
+	     $boardtoval = array_unique($this->boarddata); //Tar bort alla dupliceringar, kommer bara finnas kvar 2 element i arrayen, en tom ruta, samt en kryssad ruta.
+		 var_dump($boardtoval);
+		 
 		foreach ($boardtoval as $key => $value) //Kollar varje rad
 		{
-			if ($value == $this->player) //Om ett värde matchar spelarnamnet (en ruta har X på spelare X:s runda)
+			if ($value == $this->player) //Om ett värde matchar spelarnamnet (en ruta har värdet X på spelare X:s runda)
 			{	
-				//update the board in that position with the player's X or O 
-				$coords = explode("_", $key);
+				//Uppdatera att spelaren X eller O har markerat den rutan..
+				
+				$coords = explode(" ", $key); // Hittar ingen delimiter
 				$this->board[$coords[0]][$coords[1]] = $this->player;
 
 				//Byter spelare
@@ -126,19 +140,16 @@ class Gameview
 				else
 					$this->player = "X";
 					
-				$this->totalMoves++;
+				$this->TotalMoves ++;
 			}
 		}
-	
-		if ($this->isOver())
-			return;
 	}
 	
     public function Doesuserwanttomove()
     {
-	    if(isset($_POST[Self::$PlayerMove]))
+	    if(isset($_POST[self::$PlayerMove]))
 	    {
-	        
+	        $this->boarddata = $_POST;
 	        return true;
 	    }
 	    return false;

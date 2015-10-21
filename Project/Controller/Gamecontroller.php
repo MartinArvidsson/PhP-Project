@@ -9,10 +9,10 @@ class Gamecontroller
     
     public function Init()
     {
-        if($this->View->Doesuserwanttomove() == true)
+        if($this->View->Doesuserwanttomove())
         {
             $this->View->StartGame();
-            $this->Model->Checkforwinner($this->View->Getcurrentboard,$this->View->GetMovesMade);
+            //$this->Model->Checkforwinner($this->View->Getcurrentboard,$this->View->GetMovesMade);
         }
         else
         {

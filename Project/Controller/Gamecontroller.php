@@ -11,12 +11,11 @@ class Gamecontroller
     {
         if($this->View->Doesuserwanttomove())
         {
-            $this->View->StartGame();
-            //$this->Model->Checkforwinner($this->View->Getcurrentboard,$this->View->GetMovesMade);
+             $this->View->Getaboard();
+             $this->View->StartGame();
+             $this->Model->ValidateData($this->View->Getcurrentboard(),$this->View->GetMovesMade());
         }
-        else
-        {
+            $this->View->Getaboard();
             return $this->View;
-        }
     }
 }

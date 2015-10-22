@@ -4,7 +4,7 @@ class Gameview
 {
     private static $PlayerMove = 'Gameview::Play';
     private $player = "X";
-    private $board = array();
+    private $board;
     private $gameOver = false;
     private $gameWon  = false;
     private $message = "";
@@ -22,23 +22,30 @@ class Gameview
     
     public function Getaboard()
     {
-        //$this->board = array(); //Återställer spelplanen till 0
-        if(sizeof($this->board) == 0)
+        if (!isset($_SESSION["board"]))
         {
-            for($xlength = 0; $xlength <=2; $xlength++) //Genererar upp en 3x3 spelplan
+            $this->board = new stdClass;
+            $this->board->board = array();
+            for($xlength = 0; $xlength < 3; $xlength++) //Genererar upp en 3x3 spelplan
             {
-                for($ylength = 0; $ylength <=2; $ylength++)
+                for($ylength = 0; $ylength < 3; $ylength++)
                 {
-                    $this->board[$xlength][$ylength] = null;
-
+                    $this->board->board[$xlength][$ylength] = null;
+                    
                 }
             }
+            $_SESSION["board"] = $this->board;
         }
         else
         {
-            $this->board = $this->Model->getboardfrommodel();
+            //$this->board = $this->Model->getboardfrommodel();
+            $this->board = $_SESSION["board"] ;
         }
+        
+        return $this->board; //($_SESSION["board"]);
     }
+    
+    
 
     
     public function startGame()
@@ -70,10 +77,11 @@ class Gameview
 				{
 				    $this->Boxcounter ++;
 					$text .= "<td =\"board_cell\">";
-					if($this->board[$xlength][$ylength])
+					$board = $this->board->board;
+					if($board[$xlength][$ylength])
 					{
 					    //Redan valda rutor,skriv ut matchande bild. wip
-					    $text .= "<img src=\"Pictures/{$this->board[$xlength][$ylength]}.png\" alt=\"{$this->board[$xlength][$ylength]}\" title=\"{$this->board[$xlength][$ylength]}\" />";
+					    $text .= "<img src=\"Pictures/{$board[$xlength][$ylength]}.png\" alt=\"{$board[$xlength][$ylength]}\" title=\"{$board[$xlength][$ylength]}\" />";
 					}
 					else
 					{
@@ -140,7 +148,7 @@ class Gameview
 				
 				$coords = explode("-", $key);
 				
-				$this->board[$coords[0]][$coords[1]] = $this->player;
+				$this->board->board[$coords[0]][$coords[1]] = $this->player;
 
 				//Byter spelare
 				if ($this->player == "X")
@@ -159,6 +167,10 @@ class Gameview
 	    {
 	        $this->boarddata = $_POST;
 	        return true;
+	    }
+	    else
+	    {
+	        unset($_SESSION["board"]);
 	    }
 	    return false;
 	}

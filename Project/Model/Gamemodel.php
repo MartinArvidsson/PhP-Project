@@ -17,39 +17,40 @@ class GameModel
 
     private function Checkforwinner($board,$totalMoves)
 	{
+		$board = $this->board->board;
 		//Översta raden
-		if ($this->board[0][0] && $this->board[0][0] == $this->board[0][1] && $this->board[0][1] == $this->board[0][2])
-			$this->boardtoreturn[0][0] = $this->board[0][0];
+		if ($board[0][0] && $board[0][0] == $board[0][1] && $board[0][1] == $board[0][2])
+			$this->boardtoreturn[0][0] = $board[0][0];
 			
 		//Andra raden
-		if ($this->board[1][0] && $this->board[1][0] == $this->board[1][1] && $this->board[1][1] == $this->board[1][2])
-			$this->boardtoreturn[1][0] = $this->board[1][0];
+		if ($board[1][0] && $board[1][0] == $board[1][1] && $board[1][1] == $board[1][2])
+			$this->boardtoreturn[1][0] = $board[1][0];
 			
 		//tredje raden
-		if ($this->board[2][0] && $this->board[2][0] == $this->board[2][1] && $this->board[2][1] == $this->board[2][2])
-			$this->boardtoreturn[2][0] = $this->board[2][0];
+		if ($board[2][0] && $board[2][0] == $board[2][1] && $board[2][1] == $board[2][2])
+			$this->boardtoreturn[2][0] = $board[2][0];
 			
 		//första columnen
-		if ($this->board[0][0] && $this->board[0][0] == $this->board[1][0] && $this->board[1][0] == $this->board[2][0])
-			$this->boardtoreturn[0][0] = $this->board[0][0];
+		if ($board[0][0] && $board[0][0] == $board[1][0] && $board[1][0] == $board[2][0])
+			$this->boardtoreturn[0][0] = $board[0][0];
 			
 		//andra koliumnen
-		if ($this->board[0][1] && $this->board[0][1] == $this->board[1][1] && $this->board[1][1] == $this->board[2][1])
-			$this->boardtoreturn[0][1] = $this->board[0][1];
+		if ($board[0][1] && $board[0][1] == $board[1][1] && $board[1][1] == $board[2][1])
+			$this->boardtoreturn[0][1] = $board[0][1];
 			
 		//Tredje kolumnen
-		if ($this->board[0][2] && $this->board[0][2] == $this->board[1][2] && $this->board[1][2] == $this->board[2][2])
-			$this->boardtoreturn[0][2] = $this->board[0][2];
+		if ($board[0][2] && $board[0][2] == $board[1][2] && $board[1][2] == $board[2][2])
+			$this->boardtoreturn[0][2] = $board[0][2];
 			
 		//Diagonalt 
-		if ($this->board[0][0] && $this->board[0][0] == $this->board[1][1] && $this->board[1][1] == $this->board[2][2])
-			$this->boardtoreturn[0][0] = $this->board[0][0];
+		if ($board[0][0] && $board[0][0] == $board[1][1] && $board[1][1] == $board[2][2])
+			$this->boardtoreturn[0][0] = $board[0][0];
 			
 		//Diagonalt
-		if ($this->board[0][2] && $this->board[0][2] == $this->board[1][1] && $this->board[1][1] == $this->board[2][0])
-			$this->boardtoreturn[0][2] = $this->board[0][2];
+		if ($board[0][2] && $board[0][2] == $board[1][1] && $board[1][1] == $board[2][0])
+			$this->boardtoreturn[0][2] = $board[0][2];
 								
-		if($this->totalMoves == 9)
+		if($this->totalMoves >= 9)
 		    $this->gamemessage ="Oavgjort";
 	}
 	

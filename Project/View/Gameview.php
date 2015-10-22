@@ -102,7 +102,7 @@ class Gameview
         // Om det inte är tom sträng har man antingen vunnit eller spelat lika, det kollas här i else.
         else
         {
-            if($this->message !="Oavgjort!")
+            if($this->message !="Oavgjort!" && $this->message != "")
             {
                 $this->message ="";
                 $this->TotalMoves = 0;
@@ -131,13 +131,14 @@ class Gameview
     private function Trytomove()
 	{
 	    $boardtoval = array_unique($this->boarddata); //Tar bort alla dupliceringar, kommer bara finnas kvar 3 element i arrayen, en tom ruta, samt en kryssad ruta samt att man har tryckt knapp.
+		var_dump($boardtoval);
 		foreach ($boardtoval as $key => $value) //Kollar varje rad
 		{
 			if ($value == $this->player) //Om ett värde matchar spelarnamnet (en ruta har värdet X på spelare X:s runda)
 			{	
 				//Uppdatera att spelaren X eller O har markerat den rutan..
 				
-				$coords = explode("-", $key); // Hittar ingen delimiter
+				$coords = explode("-", $key);
 				
 				$this->board[$coords[0]][$coords[1]] = $this->player;
 

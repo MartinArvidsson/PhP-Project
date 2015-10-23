@@ -26,7 +26,7 @@ class Gameview
         {
             $this->board = new stdClass;
             $this->board->board = array();
-            for($xlength = 0; $xlength < 3; $xlength++) //Genererar upp en 3x3 spelplan
+            for($xlength = 0; $xlength < 3; $xlength++)
             {
                 for($ylength = 0; $ylength < 3; $ylength++)
                 {
@@ -35,34 +35,31 @@ class Gameview
                 }
             }
             $_SESSION["board"] = $this->board;
+            $this->player = "X";
+            $_SESSION["player"] = $this->player;
         }
         else
         {
-            //$this->board = $this->Model->getboardfrommodel();
-            $this->board = $_SESSION["board"] ;
+            $this->board = $_SESSION["board"];
+            $this->player = $_SESSION["player"];
         }
         
-        return $this->board; //($_SESSION["board"]);
+        return $this->board;
     }
-    
-    
-
     
     public function startGame()
     {
         $this->Trytomove();
     }
 
-    
     public function response()
     {
-        
         return $this->DisplayBoard();
     }
     
     private function DisplayBoard()
     {
-        $this->message = $this->Model->getMessage();
+        $this->message = $this->Model->getwhowonmessage();
         if($this->message == "")
         {
             $text = "
@@ -80,19 +77,16 @@ class Gameview
 					$board = $this->board->board;
 					if($board[$xlength][$ylength])
 					{
-					    //Redan valda rutor,skriv ut matchande bild. wip
-					    $text .= "<img src=\"Pictures/{$board[$xlength][$ylength]}.png\" alt=\"{$board[$xlength][$ylength]}\" title=\"{$board[$xlength][$ylength]}\" />";
+					    $text .= "<img src=\"../Pictures/{$board[$xlength][$ylength]}.png\" alt=\"{$board[$xlength][$ylength]}\" title=\"{$board[$xlength][$ylength]}\" />";
 					}
 					else
 					{
-					    //Annars välj alternativ, Första val tomt, andra val X eller O beronde på spelare.
 					    $text .= "
 					        <select name= \"{$xlength}-{$ylength}\">
 					            <option value=\"\"></option>
 					            <option value=\"$this->player\">$this->player</option>
 					        </select>
 					        ";
-					    
 					}
 					$text .= "</td>";
                 }
@@ -107,29 +101,24 @@ class Gameview
             ";
 			return $text;
         }
-        // Om det inte är tom sträng har man antingen vunnit eller spelat lika, det kollas här i else.
         else
         {
-            if($this->message !="Oavgjort!" && $this->message != "")
+            if($this->message =="Oavgjort!")
             {
                 $this->message ="";
-                $this->TotalMoves = 0;
-                $text ="<p>Du vann! spela en till match?</p>";
+                $_SESSION["totalmoves"] = 0;
+                $text ="<p>Oavgjort! spela en till match?</p>";
                 $text .= "<p><input type =\"Submit\" name =\"newgame\" value=\"Ny Match\"/></p>";
                 return $text;
-
-                //Skriv ut att person X/O vann
-                
-                
             }
             else
             {  
-                $this->message ="";
-                $this->TotalMoves = 0;
-                $text .= "<p><input type =\"Submit\" name =\"newgame\" value=\"Ny Match\"/></p>";
-                return $text;
-                //Skriv ut att person X/O spelade oavgjort
 
+                $_SESSION["totalmoves"] = 0;
+                $text ="<p>$this->message</p>";
+                $text .= "<p><input type =\"Submit\" name =\"newgame\" value=\"Ny Match\"/></p>";
+                $this->message ="";
+                return $text;
             }
         }
 
@@ -138,25 +127,17 @@ class Gameview
         
     private function Trytomove()
 	{
-	    $boardtoval = array_unique($this->boarddata); //Tar bort alla dupliceringar, kommer bara finnas kvar 3 element i arrayen, en tom ruta, samt en kryssad ruta samt att man har tryckt knapp.
-		var_dump($boardtoval);
-		foreach ($boardtoval as $key => $value) //Kollar varje rad
+	    $boardtoval = array_unique($this->boarddata);
+	    
+		foreach ($boardtoval as $key => $value)
 		{
-			if ($value == $this->player) //Om ett värde matchar spelarnamnet (en ruta har värdet X på spelare X:s runda)
+			if ($value == $this->player)
 			{	
-				//Uppdatera att spelaren X eller O har markerat den rutan..
-				
 				$coords = explode("-", $key);
-				
 				$this->board->board[$coords[0]][$coords[1]] = $this->player;
-
-				//Byter spelare
-				if ($this->player == "X")
-					$this->player = "O";
-				else
-					$this->player = "X";
-					
-				$this->TotalMoves ++;
+                $this->player = $this->player == "X" ? "O" : "X";
+                $_SESSION["player"] = $this->player;
+				$_SESSION["totalmoves"] ++;
 			}
 		}
 	}
@@ -175,14 +156,9 @@ class Gameview
 	    return false;
 	}
     
-    public function Getcurrentboard()
-    {
-        return $this->board;
-    }
-    
     public function GetMovesMade()
     {
-        return $this->TotalMoves;
+        return $_SESSION["totalmoves"];
     }
 
 }

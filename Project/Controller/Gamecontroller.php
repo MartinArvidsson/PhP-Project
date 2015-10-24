@@ -16,6 +16,12 @@ class Gamecontroller
              $this->Model->ValidateData($board,$this->View->GetMovesMade());
         }
         
+        if($this->View->Doesuserwanttoplayagain())
+        {
+            $this->View->Getaboard();
+            return $this->View;
+        }        
+        
         $this->View->Getaboard();
         return $this->View;
     }

@@ -3,6 +3,7 @@
 class Gameview
 {
     private static $PlayerMove = 'Gameview::Play';
+    private static $NewGame = 'Gameview::NewGame';
     private $player = "X";
     private $board;
     private $gameOver = false;
@@ -105,18 +106,18 @@ class Gameview
         {
             if($this->message =="Oavgjort!")
             {
-                $this->message ="";
                 $_SESSION["totalmoves"] = 0;
-                $text ="<p>Oavgjort! spela en till match?</p>";
-                $text .= "<p><input type =\"Submit\" name =\"newgame\" value=\"Ny Match\"/></p>";
+                $this->message ="";
+                $text ="<p>No winner, game tied sadly!, Play again?</p>";
+                $text .= "<p><input type =\"Submit\" name =".self::$NewGame." value=\"Ny Match\"/></p>";
                 return $text;
             }
             else
-            {  
-
+            {
                 $_SESSION["totalmoves"] = 0;
                 $text ="<p>$this->message</p>";
-                $text .= "<p><input type =\"Submit\" name =\"newgame\" value=\"Ny Match\"/></p>";
+                $text .= "<form><input type =\"Submit\" name =".self::$NewGame." value=\"Ny Match\"/>
+                        </form>";
                 $this->message ="";
                 return $text;
             }
@@ -152,6 +153,17 @@ class Gameview
 	    else
 	    {
 	        unset($_SESSION["board"]);
+	    }
+	    return false;
+	}
+	
+	public function Doesuserwanttoplayagain()
+	{
+	    if(isset($_POST[self::$NewGame]))
+	    {
+	        unset($_SESSION["board"]);
+            $_SESSION["totalmoves"] = 0;	        
+	        return true;
 	    }
 	    return false;
 	}

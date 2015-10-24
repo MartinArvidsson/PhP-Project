@@ -20,9 +20,8 @@ class GameModel
 
     private function Checkforwinner($board,$totalMoves)
 	{
-		
-		$board = $this->board->board;
 		var_dump($this->totalMoves);
+		$board = $this->board->board;
 		if($this->totalMoves >= 9)
 		$this->gamemessage ="Oavgjort";
 		//Översta raden
@@ -73,7 +72,7 @@ class GameModel
 		if(isset($this->boardtoreturn->winner) && $this->boardtoreturn->winner != null)
 		{
 			$boardandmeassage = $this->boardtoreturn->winner;
-			$this->gamemessage = "Spelare \"$boardandmeassage\" du vann!";
+			$this->gamemessage = "Player \"$boardandmeassage\" you won!";
 			return $this->gamemessage;
 		}
 		return $this->gamemessage;

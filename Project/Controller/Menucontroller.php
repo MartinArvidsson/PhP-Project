@@ -9,8 +9,15 @@ class Menucontroller
     
     public function Init()
     {
-        $this->View->Choosegamemode();
-        
+        //$this->View->Choosegamemode();
+        if($this->View->ChoosegamemodeFT3())
+        {
+            
+        }
+        if($this->View->ChoosegamemodeFT5())
+        {
+            
+        }
         return $this->View;
     }
 }

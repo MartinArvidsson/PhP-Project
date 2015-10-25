@@ -15,14 +15,15 @@ class Mastercontroller
     public function Startapplication()
     {
         $Layout = new LayoutView();
-
-        $Menumodel = new Menumodel();        
-        $Menuview = new Menuview();
-        $Menucontroller = new Menucontroller($Menuview,$Menumodel);
         
         $Gamemodel = new Gamemodel();
         $Gameview = new Gameview($Gamemodel); 
         $Gamecontroller = new Gamecontroller($Gameview,$Gamemodel);
+        
+        $Menumodel = new Menumodel();        
+        $Menuview = new Menuview($Menumodel);
+        $Menucontroller = new Menucontroller($Menuview,$Menumodel,$Gamecontroller);
+        
         
         if(isset($_GET["Game"])) //WIP, Gamesidan finns inte i dagsläget därför satt till !isset
         {

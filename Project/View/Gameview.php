@@ -4,6 +4,7 @@ class Gameview
 {
     private static $PlayerMove = 'Gameview::Play';
     private static $NewGame = 'Gameview::NewGame';
+    private static $BacktoStart = 'Gameview::StartMenu';
     private $player = "X";
     private $board;
     private $message;
@@ -120,12 +121,33 @@ class Gameview
         }
         else
         {
+            if($_SESSION["FT3Winner"] != "")
+            {
+                //TA BORT SESSION FT3WINNER GLÖM INTE !!!
+                $_SESSION["totalmoves"] = 0;
+                $_SESSION["PlayerXwinsFT3"] = 0;
+                $_SESSION["PlayerOwinsFT3"] = 0;
+                $text = "<p>$this->message</p>";
+                $text .= "<form method = post><input type=\"submit\" name=". self::$BacktoStart . " value=\"Back to start\"/></form>";
+                $this->message ="";
+                return $text;   
+            }
+            if($_SESSION["FT5Winner"] != "")
+            {
+                $_SESSION["totalmoves"] = 0;
+                $_SESSION["PlayerXwinsFT5"] = 0;
+                $_SESSION["PlayerOwinsFT5"] = 0;
+                $text = "<p>$this->message</p>";
+                $text .= "<form method = post><input type=\"submit\" name=". self::$BacktoStart . " value=\"Back to start\"/></form>";
+                $this->message ="";
+                return $text;
+            }
             if($this->message =="Oavgjort!")
             {
                 $_SESSION["totalmoves"] = 0;
                 $this->message ="";
                 $text = "<p>No winner, game tied sadly!, Go again</p>";
-                $text .= "<form method = post><input type=\"submit\" name=". self::$newGame . " value=\"Play again\"/></form>";
+                $text .= "<form method = post><input type=\"submit\" name=". self::$NewGame . " value=\"Play again\"/></form>";
                 return $text;
             }
             else
@@ -176,6 +198,17 @@ class Gameview
 	public function Doesuserwanttoplayagain()
 	{
 	    if(isset($_POST[self::$NewGame]))
+	    {
+	        unset($_SESSION["board"]);
+            $_SESSION["totalmoves"] = 0;	        
+	        return true;
+	    }
+	    return false;
+	}
+	
+	public function DoesUserwanttostartagain()
+	{
+	    if(isset($_POST[self::$BacktoStart]))
 	    {
 	        unset($_SESSION["board"]);
             $_SESSION["totalmoves"] = 0;	        

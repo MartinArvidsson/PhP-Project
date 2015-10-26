@@ -23,6 +23,11 @@ class Gamecontroller
             return $this->View;
         }
         
+        if($this->View->DoesUserwanttostartagain())
+        {
+            header("location:Index.php");
+        }
+        
         $this->View->Getaboard();
         return $this->View;
     }

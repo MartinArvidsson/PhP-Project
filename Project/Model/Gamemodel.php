@@ -5,6 +5,7 @@ class GameModel
     private $board;
     private $boardtoreturn;
     private $totalMoves;
+    
     public function ValidateData($_board,$_totalMoves)
     {
         $this->board = $_board;
@@ -70,16 +71,38 @@ class GameModel
 		if(isset($this->boardtoreturn->winner) && $this->boardtoreturn->winner != null)
 		{
 			$Winner = $this->boardtoreturn->winner;
-			$this->gamemessage = "Player \"$Winner\" you won!";
+			$this->gamemessage = "Player \"$Winner\" you won this round";
 			if($_SESSION["IsgameFT3"] == true)
 			{
 				if($Winner == "X")
 				{
 					$_SESSION["PlayerXwinsFT3"] ++;
+					if($_SESSION["PlayerXwinsFT3"] == 3)
+					{
+						//Spelare X vann FT3
+						if(!isset($_SESSION["FT3Winner"]))
+						{
+							$_SESSION["FT3Winner"] = "";
+						}
+						$_SESSION["FT3Winner"] = $Winner;
+						$this->gamemessage = "Player \"$Winner\" you won the game!";
+					}
+					return $this->gamemessage;
 				}
 				else
 				{
 					$_SESSION["PlayerOwinsFT3"] ++;
+					if($_SESSION["PlayerOwinsFT3"] == 3)
+					{
+						//Spelare O vann FT3
+						if(!isset($_SESSION["FT3Winner"]))
+						{
+							$_SESSION["FT3Winner"] = "";
+						}
+						$_SESSION["FT3Winner"] = $Winner;
+						$this->gamemessage = "Player \"$Winner\" you won the game!";
+					}
+					return $this->gamemessage;
 				}
 			}
 			else
@@ -87,15 +110,35 @@ class GameModel
 				if($Winner == "X")
 				{
 					$_SESSION["PlayerXwinsFT5"] ++;
+					if($_SESSION["PlayerXwinsFT5"] == 5)
+					{
+						if(!isset($_SESSION["FT5Winner"]))
+						{
+							$_SESSION["FT5Winner"] = "";
+						}
+						//Spelare X vann FT5
+						$_SESSION["FT5Winner"] = $Winner;
+					}
+					return $this->gamemessage;
 				}
 				else
 				{
 					$_SESSION["PlayerOwinsFT5"] ++;
+					if($_SESSION["PlayerOwinsFT5"] == 5)
+					{
+						if(!isset($_SESSION["FT5Winner"]))
+						{
+							$_SESSION["FT5Winner"] = "";
+						}
+						//Spelare O vann FT5
+						$_SESSION["FT5Winner"] = $Winner;
+					}
+					return $this->gamemessage;
 				}
 			}
-			return $this->gamemessage;
+			return $this->gamemessage; //Vem som vann.
 		}
-		return $this->gamemessage;
+		return $this->gamemessage; //Tom sträng då kraven inte uppfylldes
 	}
 	
 	public function currentXwinsFT3()
@@ -106,6 +149,7 @@ class GameModel
 		}
 		return $_SESSION["PlayerXwinsFT3"];
 	}
+	
 	public function currentOwinsFT3()
 	{
 		if(!isset($_SESSION["PlayerOwinsFT3"]))
@@ -115,21 +159,6 @@ class GameModel
 		return $_SESSION["PlayerOwinsFT3"];
 	}
 	
-	public function TotalFT3wins()
-	{
-		if($_SESSION["PlayerOwinsFT3"] == 3 || $_SESSION["PlayerXwinsFT3"] == 3)
-		{
-			if(!isset($_SESSION["TotalFT3wins"]))
-			{
-				$_SESSION["TotalFT3wins"] = 0;
-			}
-			$_SESSION["TotalFT3wins"] ++;
-		}
-		
-		return $_SESSION["TotalFT3wins"];
-	}
-	
-	
 	public function currentXwinsFT5()
 	{
 		if(!isset($_SESSION["PlayerXwinsFT5"]))
@@ -138,6 +167,7 @@ class GameModel
 		}
 		return $_SESSION["PlayerXwinsFT5"];
 	}
+	
 	public function currentOwinsFT5()
 	{
 		if(!isset($_SESSION["PlayerOwinsFT5"]))
@@ -145,19 +175,5 @@ class GameModel
 			$_SESSION["PlayerOwinsFT5"] = 0;
 		}
 		return $_SESSION["PlayerOwinsFT5"];
-	}
-	
-	public function TotalFT5wins()
-	{
-		if($_SESSION["PlayerOwinsFT5"] == 3 || $_SESSION["PlayerXwinsFT5"] == 3)
-		{
-			if(!isset($_SESSION["TotalFT5wins"]))
-			{
-				$_SESSION["TotalFT5wins"] = 0;
-			}
-			$_SESSION["TotalFT5wins"] ++;
-		}
-		
-		return $_SESSION["TotalFT5wins"];
 	}
 }

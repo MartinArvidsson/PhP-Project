@@ -121,9 +121,10 @@ class Gameview
         }
         else
         {
-            if($_SESSION["FT3Winner"] != "")
+
+            // if($_SESSION["FT3Winner"] != "")
+            if($this->Model->CheckforFT3Winner())
             {
-                //TA BORT SESSION FT3WINNER GLÖM INTE !!!
                 $_SESSION["totalmoves"] = 0;
                 $_SESSION["PlayerXwinsFT3"] = 0;
                 $_SESSION["PlayerOwinsFT3"] = 0;
@@ -132,7 +133,8 @@ class Gameview
                 $this->message ="";
                 return $text;   
             }
-            if($_SESSION["FT5Winner"] != "")
+            // if($_SESSION["FT5Winner"] != "")
+            if($this->Model->CheckforFT5Winner())
             {
                 $_SESSION["totalmoves"] = 0;
                 $_SESSION["PlayerXwinsFT5"] = 0;
@@ -152,6 +154,7 @@ class Gameview
             }
             else
             {
+                $_SESSION["FT3Winner"] = "";
                 $_SESSION["totalmoves"] = 0;
                 $text = "<p>$this->message</p>";
                 $text .= "<form method = post><input type=\"submit\" name=". self::$NewGame . " value=\"Play again\"/></form>";
@@ -176,6 +179,10 @@ class Gameview
                 $this->player = $this->player == "X" ? "O" : "X";
                 $_SESSION["player"] = $this->player;
 				//IF
+				if(!isset($_SESSION["totalmoves"]))
+				{
+                    $_SESSION["totalmoves"] = 0;
+				}
 				$_SESSION["totalmoves"] ++;
 			}
 		}

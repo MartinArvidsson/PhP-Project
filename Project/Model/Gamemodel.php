@@ -77,31 +77,33 @@ class GameModel
 				if($Winner == "X")
 				{
 					$_SESSION["PlayerXwinsFT3"] ++;
-					if($_SESSION["PlayerXwinsFT3"] == 3)
+						
+					if(!isset($_SESSION["FT3Winner"]))
 					{
-						//Spelare X vann FT3
-						if(!isset($_SESSION["FT3Winner"]))
-						{
-							$_SESSION["FT3Winner"] = "";
-						}
-						$_SESSION["FT3Winner"] = $Winner;
-						$this->gamemessage = "Player \"$Winner\" you won the game!";
+						$_SESSION["FT3Winner"] = "";
 					}
+						if($_SESSION["PlayerXwinsFT3"] == 3)
+						{
+							//Spelare X vann FT3
+							$_SESSION["FT3Winner"] = $Winner;
+							$this->gamemessage = "Player \"$Winner\" you won the game!";
+						}
 					return $this->gamemessage;
 				}
 				else
 				{
 					$_SESSION["PlayerOwinsFT3"] ++;
-					if($_SESSION["PlayerOwinsFT3"] == 3)
+					if(!isset($_SESSION["FT3Winner"]))
 					{
-						//Spelare O vann FT3
-						if(!isset($_SESSION["FT3Winner"]))
+						$_SESSION["FT3Winner"] = "";
+					}					
+						if($_SESSION["PlayerOwinsFT3"] == 3)
 						{
-							$_SESSION["FT3Winner"] = "";
+							//Spelare O vann FT3
+	
+							$_SESSION["FT3Winner"] = $Winner;
+							$this->gamemessage = "Player \"$Winner\" you won the game!";
 						}
-						$_SESSION["FT3Winner"] = $Winner;
-						$this->gamemessage = "Player \"$Winner\" you won the game!";
-					}
 					return $this->gamemessage;
 				}
 			}
@@ -110,28 +112,34 @@ class GameModel
 				if($Winner == "X")
 				{
 					$_SESSION["PlayerXwinsFT5"] ++;
+					$this->gamemessage = "Player \"$Winner\" you won this round";
+					if(!isset($_SESSION["FT5Winner"]))
+					{
+						$_SESSION["FT5Winner"] = "";
+					}					
 					if($_SESSION["PlayerXwinsFT5"] == 5)
 					{
-						if(!isset($_SESSION["FT5Winner"]))
-						{
-							$_SESSION["FT5Winner"] = "";
-						}
+
 						//Spelare X vann FT5
 						$_SESSION["FT5Winner"] = $Winner;
+						$this->gamemessage = "Player \"$Winner\" you won the game!";
 					}
 					return $this->gamemessage;
 				}
 				else
 				{
 					$_SESSION["PlayerOwinsFT5"] ++;
+					$this->gamemessage = "Player \"$Winner\" you won this round";
+					if(!isset($_SESSION["FT5Winner"]))
+					{
+						$_SESSION["FT5Winner"] = "";
+						
+					}
 					if($_SESSION["PlayerOwinsFT5"] == 5)
 					{
-						if(!isset($_SESSION["FT5Winner"]))
-						{
-							$_SESSION["FT5Winner"] = "";
-						}
 						//Spelare O vann FT5
 						$_SESSION["FT5Winner"] = $Winner;
+						$this->gamemessage = "Player \"$Winner\" you won the game!";
 					}
 					return $this->gamemessage;
 				}
@@ -139,6 +147,24 @@ class GameModel
 			return $this->gamemessage; //Vem som vann.
 		}
 		return $this->gamemessage; //Tom sträng då kraven inte uppfylldes
+	}
+	
+	public function CheckforFT3Winner()
+	{
+		if(!isset($_SESSION["FT3Winner"]))
+		{
+			$_SESSION["FT3Winner"] = "";
+		}
+		return $_SESSION["FT3Winner"];
+	}
+	
+	public function CheckforFT5Winner()
+	{
+		if(!isset($_SESSION["FT5Winner"]))
+		{
+			$_SESSION["FT5Winner"] = "";
+		}
+		return $_SESSION["FT5Winner"];
 	}
 	
 	public function currentXwinsFT3()

@@ -6,9 +6,9 @@ class Gameview
     private static $NewGame = 'Gameview::NewGame';
     private $player = "X";
     private $board;
+    private $message;
     private $gameOver = false;
     private $gameWon  = false;
-    private $message = "";
     private $Boxcounter = 0;
     private $TotalMoves = 0;
     private $boarddata = array();
@@ -63,10 +63,15 @@ class Gameview
     private function DisplayBoard()
     {
         $this->message = $this->Model->getwhowonmessage();
+        $currentXwins = $this->Model->currentXwins();
+        $currentOwins = $this->Model->currentOwins();
         if($this->message == "")
         {
             $text = "
                 <div id =\"board\">
+                <a> Current X wins : $currentXwins</a>
+                <br>
+                <a> Current O wins : $currentOwins</a>
                     <form method=\"post\">
                         <table>
             ";
@@ -110,16 +115,15 @@ class Gameview
             {
                 $_SESSION["totalmoves"] = 0;
                 $this->message ="";
-                $text ="<p>No winner, game tied sadly!, Play again?</p>";
-                $text .= "<p><input type =\"Submit\" name =".self::$NewGame." value=\"New Match\"/></p>";
+                $text = "<p>No winner, game tied sadly!, Play again?</p>";
+                $text .= "<form><input type=\"submit\" name=". self::$newGame . " value=\"Play again\"/></form>";
                 return $text;
             }
             else
             {
                 $_SESSION["totalmoves"] = 0;
-                $text ="<p>$this->message</p>";
-                $text .= "<form><input type =\"Submit\" name =".self::$NewGame." value=\"New Match\"/>
-                        </form>";
+                $text = "<p>$this->message</p>";
+                $text .= "<form><input type=\"submit\" name=". self::$NewGame . " value=\"Play again\"/></form>";
                 $this->message ="";
                 return $text;
             }
@@ -140,6 +144,7 @@ class Gameview
 				$this->board->board[$coords[0]][$coords[1]] = $this->player;
                 $this->player = $this->player == "X" ? "O" : "X";
                 $_SESSION["player"] = $this->player;
+				//IF
 				$_SESSION["totalmoves"] ++;
 			}
 		}

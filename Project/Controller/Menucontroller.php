@@ -13,7 +13,6 @@ class Menucontroller
     
     public function Init()
     {
-        //$this->View->Choosegamemode();
         if($this->View->ChoosegamemodeFT3())
         {
             header("location:Index.php?Game");

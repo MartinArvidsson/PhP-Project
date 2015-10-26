@@ -28,10 +28,18 @@ class Menuview
     {
         return '
 			<form method="post" >
-			    <h1>Playerscores overall First to 3:</h1>
+			    <a>Playerscores overall in First to 3 games:</a>
+			    <br>
 			    <a>Player X : '.$PlayerXscore.'</a>
 			    <br>
 			    <a>Player O : '.$PlayerOscore.'</a>
+			    <br>
+			    <a>Playerscores overall in First to 5 games:</a>
+			    <br>
+			    <a>Player X : '.$PlayerXscore.'</a>
+			    <br>
+			    <a>Player O : '.$PlayerOscore.'</a>
+			    
 				<fieldset>
 					<legend>Choose gamemode, First to 3 or First to 5</legend>
     				<input type="submit" name="' . self::$Firsttothree . '" value="First to 3" />

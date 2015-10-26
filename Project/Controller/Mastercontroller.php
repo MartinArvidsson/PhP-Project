@@ -34,7 +34,6 @@ class Mastercontroller
         else
         {
             $v = $Menucontroller->Init();
-            // $this->currentgamemessage = $this->Gamecontroller->Currentgamemode();
         }
         $Layout->render($v,$this->currentgamemessage);
     }

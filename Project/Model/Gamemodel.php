@@ -5,7 +5,8 @@ class GameModel
     private $board;
     private $boardtoreturn;
     private $totalMoves;
-    
+    private $currentXwins = 0;
+    private $currentOwins = 0;
     public function ValidateData($_board,$_totalMoves)
     {
         $this->board = $_board;
@@ -20,7 +21,6 @@ class GameModel
 
     private function Checkforwinner($board,$totalMoves)
 	{
-		var_dump($this->totalMoves);
 		$board = $this->board->board;
 		if($this->totalMoves >= 9)
 		$this->gamemessage ="Oavgjort";
@@ -71,10 +71,27 @@ class GameModel
 	{
 		if(isset($this->boardtoreturn->winner) && $this->boardtoreturn->winner != null)
 		{
-			$boardandmeassage = $this->boardtoreturn->winner;
-			$this->gamemessage = "Player \"$boardandmeassage\" you won!";
+			$Winner = $this->boardtoreturn->winner;
+			$this->gamemessage = "Player \"$Winner\" you won!";
+			if($Winner == "X")
+			{
+				$this->currentXwins ++;
+			}
+			else
+			{
+				$this->currentOwins ++;
+			}
 			return $this->gamemessage;
 		}
 		return $this->gamemessage;
+	}
+	
+	public function currentXwins()
+	{
+		return $this->currentXwins;
+	}
+	public function currentOwins()
+	{
+		return $this->currentOwins;
 	}
 }

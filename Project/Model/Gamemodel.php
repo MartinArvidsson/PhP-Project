@@ -84,7 +84,7 @@ class GameModel
 					}
 						if($_SESSION["PlayerXwinsFT3"] == 3)
 						{
-							//Spelare X vann FT3
+							//Spelare X vann FT3 Skicka till Menumodel så det kan presentera datan
 							$_SESSION["FT3Winner"] = $Winner;
 							$this->gamemessage = "Player \"$Winner\" you won the game!";
 						}
@@ -99,7 +99,7 @@ class GameModel
 					}					
 						if($_SESSION["PlayerOwinsFT3"] == 3)
 						{
-							//Spelare O vann FT3
+							//Spelare O vann FT3 Skicka till Menumodel så det kan presentera datan
 	
 							$_SESSION["FT3Winner"] = $Winner;
 							$this->gamemessage = "Player \"$Winner\" you won the game!";
@@ -120,7 +120,7 @@ class GameModel
 					if($_SESSION["PlayerXwinsFT5"] == 5)
 					{
 
-						//Spelare X vann FT5
+						//Spelare X vann FT5 Skicka till Menumodel så det kan presentera datan
 						$_SESSION["FT5Winner"] = $Winner;
 						$this->gamemessage = "Player \"$Winner\" you won the game!";
 					}
@@ -137,7 +137,7 @@ class GameModel
 					}
 					if($_SESSION["PlayerOwinsFT5"] == 5)
 					{
-						//Spelare O vann FT5
+						//Spelare O vann FT5 Skicka till Menumodel så det kan presentera datan
 						$_SESSION["FT5Winner"] = $Winner;
 						$this->gamemessage = "Player \"$Winner\" you won the game!";
 					}

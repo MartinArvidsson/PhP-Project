@@ -17,7 +17,6 @@ class Menumodel
       return $this->totalplayerOscoreFT3;
     }
     
-    
     public function getPlayerXscoreFT5()
     {
       return $this->totalplayerXscoreFT5;

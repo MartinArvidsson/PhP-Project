@@ -26,14 +26,27 @@ class Gamecontroller
         return $this->View;
     }
     
-    
     public function StartFT3Game()
     {
+        $this->Currentgamemode();
+        $_SESSION["Currentgamemode"] = "First to three wins is the winner!";
         $this->Init();
     }
     
     public function StartFT5Game()
     {
+        $this->Currentgamemode();
+        $_SESSION["Currentgamemode"] = "First to five wins is the winner!";
         $this->Init();
+    }
+    
+    
+    public function Currentgamemode()
+    {
+        if(!isset($_SESSION["Currentgamemode"]))
+        {
+            $_SESSION["Currentgamemode"] = "";
+        }
+        return $_SESSION["Currentgamemode"];
     }
 }

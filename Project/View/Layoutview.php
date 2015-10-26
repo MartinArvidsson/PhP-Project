@@ -2,7 +2,7 @@
 class LayoutView 
 {
   
-  public function render($v) 
+  public function render($v,$Currentgame) 
   {
     echo '<!DOCTYPE html>
       <html>
@@ -12,6 +12,7 @@ class LayoutView
         </head>
         <body>
           <h1>Luffarschack</h1>
+            <h2>'.$Currentgame.'</h2>
           <div class="container">
               ' . $v->response() . '
           </div>

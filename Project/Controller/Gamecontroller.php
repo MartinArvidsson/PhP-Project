@@ -19,7 +19,7 @@ class Gamecontroller
         if($this->View->Doesuserwanttoplayagain())
         {
             $this->View->Getaboard();
-            header("location:Index.php?Game"); //Fungerar inte :(
+            header("location:Index.php?Game");
             return $this->View;
         }
         
@@ -30,7 +30,8 @@ class Gamecontroller
     public function StartFT3Game()
     {
         //TODO: Hämta värde ifrån modellen, som specifierar att det är 3 vinster som krävs.
-        //TODO: Tala om detta för vyn, 
+        //TODO: Tala om detta för vyn,
+        $_SESSION["IsgameFT3"] = true;
         $this->Currentgamemode();
         $_SESSION["Currentgamemode"] = "First to three wins is the winner!";
         $this->Init();
@@ -38,7 +39,7 @@ class Gamecontroller
     
     public function StartFT5Game()
     {
-        
+        $_SESSION["IsgameFT3"] = false;
         $this->Currentgamemode();
         $_SESSION["Currentgamemode"] = "First to five wins is the winner!";
         $this->Init();

@@ -63,8 +63,17 @@ class Gameview
     private function DisplayBoard()
     {
         $this->message = $this->Model->getwhowonmessage();
-        $currentXwins = $this->Model->currentXwins();
-        $currentOwins = $this->Model->currentOwins();
+        //Kolla om det är FT5 eller FT3
+        if($_SESSION["IsgameFT3"] == true)
+        {
+            $currentXwins = $this->Model->currentXwinsFT3();
+            $currentOwins = $this->Model->currentOwinsFT3();
+        }
+        else
+        {
+            $currentXwins = $this->Model->currentXwinsFT5();
+            $currentOwins = $this->Model->currentOwinsFT5();
+        }
         if($this->message == "")
         {
             $text = "
@@ -115,15 +124,15 @@ class Gameview
             {
                 $_SESSION["totalmoves"] = 0;
                 $this->message ="";
-                $text = "<p>No winner, game tied sadly!, Play again?</p>";
-                $text .= "<form><input type=\"submit\" name=". self::$newGame . " value=\"Play again\"/></form>";
+                $text = "<p>No winner, game tied sadly!, Go again</p>";
+                $text .= "<form method = post><input type=\"submit\" name=". self::$newGame . " value=\"Play again\"/></form>";
                 return $text;
             }
             else
             {
                 $_SESSION["totalmoves"] = 0;
                 $text = "<p>$this->message</p>";
-                $text .= "<form><input type=\"submit\" name=". self::$NewGame . " value=\"Play again\"/></form>";
+                $text .= "<form method = post><input type=\"submit\" name=". self::$NewGame . " value=\"Play again\"/></form>";
                 $this->message ="";
                 return $text;
             }

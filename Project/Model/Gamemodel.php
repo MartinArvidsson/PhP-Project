@@ -5,8 +5,6 @@ class GameModel
     private $board;
     private $boardtoreturn;
     private $totalMoves;
-    private $currentXwins = 0;
-    private $currentOwins = 0;
     public function ValidateData($_board,$_totalMoves)
     {
         $this->board = $_board;
@@ -75,23 +73,77 @@ class GameModel
 			$this->gamemessage = "Player \"$Winner\" you won!";
 			if($Winner == "X")
 			{
-				$this->currentXwins ++;
+				$_SESSION["PlayerXwinsFT3"] ++;
 			}
 			else
 			{
-				$this->currentOwins ++;
+				$_SESSION["PlayerOwinsFT3"] ++;
 			}
 			return $this->gamemessage;
 		}
 		return $this->gamemessage;
 	}
 	
-	public function currentXwins()
+	public function currentXwinsFT3()
 	{
-		return $this->currentXwins;
+		if(!isset($_SESSION["PlayerXwinsFT3"]))
+		{
+			$_SESSION["PlayerXwinsFT3"] = 0;
+		}
+		return $_SESSION["PlayerXwinsFT3"];
 	}
-	public function currentOwins()
+	public function currentOwinsFT3()
 	{
-		return $this->currentOwins;
+		if(!isset($_SESSION["PlayerOwinsFT3"]))
+		{
+			$_SESSION["PlayerOwinsFT3"] = 0;
+		}
+		return $_SESSION["PlayerOwinsFT3"];
+	}
+	
+	public function TotalFT3wins()
+	{
+		if($_SESSION["PlayerOwinsFT3"] == 3 || $_SESSION["PlayerXwinsFT3"] == 3)
+		{
+			if(!isset($_SESSION["TotalFT3wins"]))
+			{
+				$_SESSION["TotalFT3wins"] = 0;
+			}
+			$_SESSION["TotalFT3wins"] ++;
+		}
+		
+		return $_SESSION["TotalFT3wins"];
+	}
+	
+	
+	public function currentXwinsFT5()
+	{
+		if(!isset($_SESSION["PlayerXwinsFT5"]))
+		{
+			$_SESSION["PlayerXwinsFT5"] = 0;
+		}
+		return $_SESSION["PlayerXwinsFT5"];
+	}
+	public function currentOwinsFT5()
+	{
+		if(!isset($_SESSION["PlayerOwinsFT5"]))
+		{
+			$_SESSION["PlayerOwinsFT5"] = 0;
+		}
+		return $_SESSION["PlayerOwinsFT5"];
+	}
+	
+	public function TotalFT5wins()
+	{
+		if($_SESSION["PlayerOwinsFT5"] == 3 || $_SESSION["PlayerXwinsFT5"] == 3)
+		{
+			if(!isset($_SESSION["TotalFT5wins"]))
+			{
+				$_SESSION["TotalFT5wins"] = 0;
+			}
+			$_SESSION["TotalFT5wins"] ++;
+		}
+		
+		return $_SESSION["TotalFT5wins"];
 	}
 }

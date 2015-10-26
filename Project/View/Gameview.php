@@ -13,6 +13,7 @@ class Gameview
     private $TotalMoves = 0;
     private $boarddata = array();
     private $valuetoremove = array();
+    private $CurrentGamemode ="";
    
     public function __construct(Gamemodel $_Model)
     {
@@ -57,6 +58,7 @@ class Gameview
     {
         return $this->DisplayBoard();
     }
+    
     
     private function DisplayBoard()
     {
@@ -109,14 +111,14 @@ class Gameview
                 $_SESSION["totalmoves"] = 0;
                 $this->message ="";
                 $text ="<p>No winner, game tied sadly!, Play again?</p>";
-                $text .= "<p><input type =\"Submit\" name =".self::$NewGame." value=\"Ny Match\"/></p>";
+                $text .= "<p><input type =\"Submit\" name =".self::$NewGame." value=\"New Match\"/></p>";
                 return $text;
             }
             else
             {
                 $_SESSION["totalmoves"] = 0;
                 $text ="<p>$this->message</p>";
-                $text .= "<form><input type =\"Submit\" name =".self::$NewGame." value=\"Ny Match\"/>
+                $text .= "<form><input type =\"Submit\" name =".self::$NewGame." value=\"New Match\"/>
                         </form>";
                 $this->message ="";
                 return $text;

@@ -34,8 +34,8 @@ class Menuview
 			    <a>Player O : '.$PlayerOscore.'</a>
 				<fieldset>
 					<legend>Choose gamemode, First to 3 or First to 5</legend>
-    				<input type="submit" name="' . self::$Firsttothree . '" value="Först till 3" />
-					<input type="submit" name="' . self::$Firsttofive . '" value="Först till 5" />
+    				<input type="submit" name="' . self::$Firsttothree . '" value="First to 3" />
+					<input type="submit" name="' . self::$Firsttofive . '" value="First to 5" />
 				</fieldset>
 			</form>
 		';

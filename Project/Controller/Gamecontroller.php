@@ -20,9 +20,20 @@ class Gamecontroller
         {
             $this->View->Getaboard();
             return $this->View;
-        }        
+        }
         
         $this->View->Getaboard();
         return $this->View;
+    }
+    
+    
+    public function StartFT3Game()
+    {
+        $this->Init();
+    }
+    
+    public function StartFT5Game()
+    {
+        $this->Init();
     }
 }

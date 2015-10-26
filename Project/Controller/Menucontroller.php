@@ -1,6 +1,9 @@
 <?php
 class Menucontroller
 {
+    // private $FT3Message = "First to Three!";
+    // private $FT5Message = "First to five!";
+    
     public function __construct(Menuview $_View,Menumodel $_Model,Gamecontroller $_GameC)
     {
         $this->View = $_View;
@@ -13,11 +16,14 @@ class Menucontroller
         //$this->View->Choosegamemode();
         if($this->View->ChoosegamemodeFT3())
         {
-            $this->GameC->
+            header("location:Index.php?Game");
+            $this->GameC->StartFT3Game();
         }
+        
         if($this->View->ChoosegamemodeFT5())
         {
-            
+            header("location:Index.php?Game");
+            $this->GameC->StartFT5Game();
         }
         return $this->View;
     }

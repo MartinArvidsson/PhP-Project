@@ -128,6 +128,7 @@ class Gameview
                 $_SESSION["totalmoves"] = 0;
                 $_SESSION["PlayerXwinsFT3"] = 0;
                 $_SESSION["PlayerOwinsFT3"] = 0;
+                $_SESSION["FT3Winner"] = "";
                 $text = "<p>$this->message</p>";
                 $text .= "<form method = post><input type=\"submit\" name=". self::$BacktoStart . " value=\"Back to start\"/></form>";
                 $this->message ="";
@@ -139,6 +140,7 @@ class Gameview
                 $_SESSION["totalmoves"] = 0;
                 $_SESSION["PlayerXwinsFT5"] = 0;
                 $_SESSION["PlayerOwinsFT5"] = 0;
+                $_SESSION["FT5Winner"] = "";
                 $text = "<p>$this->message</p>";
                 $text .= "<form method = post><input type=\"submit\" name=". self::$BacktoStart . " value=\"Back to start\"/></form>";
                 $this->message ="";

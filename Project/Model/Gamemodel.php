@@ -71,13 +71,27 @@ class GameModel
 		{
 			$Winner = $this->boardtoreturn->winner;
 			$this->gamemessage = "Player \"$Winner\" you won!";
-			if($Winner == "X")
+			if($_SESSION["IsgameFT3"] == true)
 			{
-				$_SESSION["PlayerXwinsFT3"] ++;
+				if($Winner == "X")
+				{
+					$_SESSION["PlayerXwinsFT3"] ++;
+				}
+				else
+				{
+					$_SESSION["PlayerOwinsFT3"] ++;
+				}
 			}
 			else
 			{
-				$_SESSION["PlayerOwinsFT3"] ++;
+				if($Winner == "X")
+				{
+					$_SESSION["PlayerXwinsFT5"] ++;
+				}
+				else
+				{
+					$_SESSION["PlayerOwinsFT5"] ++;
+				}
 			}
 			return $this->gamemessage;
 		}

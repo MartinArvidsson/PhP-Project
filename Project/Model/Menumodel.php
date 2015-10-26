@@ -9,7 +9,6 @@ class Menumodel
 
     public function getPlayerXscoreFT3()
     {
-      $this->totalplayerXscoreFT3 = $this->Model->
       return $this->totalplayerXscoreFT3;
     }
 

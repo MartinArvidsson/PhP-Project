@@ -26,19 +26,16 @@ if i have the time
 
 #Testcases
 
-| Testfall      |Krav    | Mål   |Testmetod   | Status |
+| Testcase      |Requirement    | Goal   |Method of testing   | Status |
 | ------------- |:------:| -----:| ----------:| ------:|
-| Sökfunktion   | Man ska kunna söka efter videos | Kunna söka videos | Få samma videos som resultat som att söka på webbsidan| Klar |
+| Gamelogic | Able to place brick/Marker | saved marker after pressed play | Choose marker, then press play | Done |
+| Gamelogic | Able to only place one brick/Marker | saved one marker after pressed play | Choose multiple marker, then press play | Done |
+| Gamelogic   | Able to win by tic-tac-toe pattern | Able to win by tic-tac-toe pattern | By Putting three of the same marker in a line and get a Player "" Won this round| Done |
+| Datahandling   | After winning 3 games in a FT3 series you should win the series | Win series if wins = 3 | Play the series| Done |
+| Datahanling | After winning a series the score on the startpage should reflect that a player won and update accordingly| Updated score on startpagea | Win series | Done |
 
-| Sökfunktion   | Man ska kunna söka efter videos med ä ö å | Kunna söka videos | Få samma videos som resultat som att söka på webbsidan| Klar |
 
-| Klicka tumnaglar | Klicka bild -> tas till video| Man ska kunna trycka och få videon uppspelad | Tryck på bilden -> spela videon| Klart |
 
-| Spela musikvideo | Klicka bild -> tas till video| Man ska kunna trycka och få videon uppspelad | Tryck på bilden -> spela videon| Klart |
-
-| Spela "vanlig" video | Klicka bild -> tas till video| Man ska kunna trycka och få videon uppspelad | Tryck på bilden -> spela videon| Klart |
-
-| Videospelare  | Videon ska spelas upp och kontrollrarna ska fungera utan problem|Alla funktioner i videospelaren ska fungera| Testa spela video och alla funktionerna ska fungera| Alla relevanta kontrollrar fungerar, fullskärm disablat |
 
 
 #How it ended up / Reflection:

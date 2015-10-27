@@ -22,55 +22,56 @@ class GameModel
         
         $this->Checkforwinner($this->board,$this->totalMoves);
     }
-
+	//Checks for winners in the board provided, Checks the multidimensional array positions and look for matching marker 3 in a row
     private function Checkforwinner($board,$totalMoves)
 	{
 		$board = $this->board->board;
 		if($this->totalMoves >= 9)
 		$this->gamemessage ="Oavgjort";
-		//Översta raden
+		//First row
 		if ($board[0][0] && $board[0][0] == $board[0][1] && $board[0][1] == $board[0][2])
 			$this->boardtoreturn->winner = $board[0][0];
 			
 			
-		//Andra raden
+		//Second row
 		if ($board[1][0] && $board[1][0] == $board[1][1] && $board[1][1] == $board[1][2])
 			$this->boardtoreturn->winner = $board[1][0];
 			
 			
-		//tredje raden
+		//Third row
 		if ($board[2][0] && $board[2][0] == $board[2][1] && $board[2][1] == $board[2][2])
 			$this->boardtoreturn->winner = $board[2][0];
 			
 			
-		//första kolumnen
+		//First column
 		if ($board[0][0] && $board[0][0] == $board[1][0] && $board[1][0] == $board[2][0])
 			$this->boardtoreturn->winner = $board[0][0];
 			
 			
-		//andra kolumnen
+		//Second column
 		if ($board[0][1] && $board[0][1] == $board[1][1] && $board[1][1] == $board[2][1])
 			$this->boardtoreturn->winner = $board[0][1];
 			
 			
-		//Tredje kolumnen
+		//Third column
 		if ($board[0][2] && $board[0][2] == $board[1][2] && $board[1][2] == $board[2][2])
 			$this->boardtoreturn->winner = $board[0][2];
 			
 			
-		//Diagonalt 
+		//Diagonally
 		if ($board[0][0] && $board[0][0] == $board[1][1] && $board[1][1] == $board[2][2])
 			$this->boardtoreturn->winner = $board[0][0];
 			
 			
-		//Diagonalt
+		//Diagonally
 		if ($board[0][2] && $board[0][2] == $board[1][1] && $board[1][1] == $board[2][0])
 			$this->boardtoreturn->winner = $board[0][2];
 			
 
 	}
 	
-	
+	//The logic after the board has been checked, Did anyone win? if so who? sets a message to be read by view to see the winner.
+	//And then peform actions accordingly. (Different views depending on message etc...)
 	public function getwhowonmessage()
 	{
 		if(isset($this->boardtoreturn->winner) && $this->boardtoreturn->winner != null)

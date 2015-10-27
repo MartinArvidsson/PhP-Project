@@ -4,7 +4,7 @@ class ScoreDAL
     private static $Database = "../Data/Database.bin";
     private $users = array();
     
-    
+    //Saves userscores when a series is won
     public function Initialize()
     {
         $this->users = $this->GetAllUsers();
@@ -17,7 +17,7 @@ class ScoreDAL
         }
         return $this->users;
     }
-    
+    //These functions gets called when someone won a series and then we increase the score on the startpage depending on the winner.
     public function IncreasePlayerXScoreFT3()
     {
         $this->Initialize();

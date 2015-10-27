@@ -23,7 +23,7 @@ class Gameview
         $this->Model = $_Model;
     }
     
-    public function Getaboard()
+    public function Getaboard() //Creates a 3X3 board if none exists, otherwhise set it to the value of the session
     {
         if (!isset($_SESSION["board"]))
         {
@@ -55,7 +55,7 @@ class Gameview
         $this->Trytomove();
     }
 
-    public function response()
+    public function response() //What gets shown in layoutview.
     {
         return $this->DisplayBoard();
     }
@@ -64,8 +64,7 @@ class Gameview
     private function DisplayBoard()
     {
         $this->message = $this->Model->getwhowonmessage();
-        //Kolla om det är FT5 eller FT3
-        if($_SESSION["IsgameFT3"] == true)
+        if($_SESSION["IsgameFT3"] == true) //Check if the player wants to play FT3 or FT5
         {
             $currentXwins = $this->Model->currentXwinsFT3();
             $currentOwins = $this->Model->currentOwinsFT3();
@@ -75,7 +74,7 @@ class Gameview
             $currentXwins = $this->Model->currentXwinsFT5();
             $currentOwins = $this->Model->currentOwinsFT5();
         }
-        if($this->message == "")
+        if($this->message == "") // IF the game hasn't been played before or no winner is found, generate the 3x3 board.
         {
             $text = "
                 <div id =\"board\">
@@ -122,7 +121,7 @@ class Gameview
         }
         else
         {
-            if($this->Model->CheckforFT3Winner())
+            if($this->Model->CheckforFT3Winner()) //If someone won the entire FT3 series.
             {
                 $_SESSION["totalmoves"] = 0;
                 $_SESSION["PlayerXwinsFT3"] = 0;
@@ -133,7 +132,7 @@ class Gameview
                 $this->message ="";
                 return $text;   
             }
-            if($this->Model->CheckforFT5Winner())
+            if($this->Model->CheckforFT5Winner()) //If someone won the entire FT5 Series
             {
                 $_SESSION["totalmoves"] = 0;
                 $_SESSION["PlayerXwinsFT5"] = 0;
@@ -144,7 +143,7 @@ class Gameview
                 $this->message ="";
                 return $text;
             }
-            if($this->message =="Oavgjort!")
+            if($this->message =="Oavgjort!") //If no winner was found, play again
             {
                 $_SESSION["totalmoves"] = 0;
                 $this->message ="";
@@ -152,7 +151,7 @@ class Gameview
                 $text .= "<form method = post><input type=\"submit\" name=". self::$NewGame . " value=\"Play again\"/></form>";
                 return $text;
             }
-            else
+            else //If a series is underway..
             {
                 $_SESSION["FT3Winner"] = "";
                 $_SESSION["totalmoves"] = 0;
@@ -166,7 +165,7 @@ class Gameview
     }
     
         
-    private function Trytomove()
+    private function Trytomove() //Attempts to place a marker on the board, this functionallity could prob. have been placed in the model and not in the view...
 	{
 	    $boardtoval = array_unique($this->boarddata);
 	    
@@ -187,7 +186,7 @@ class Gameview
 			}
 		}
 	}
-	
+	//Button functionality.
     public function Doesuserwanttomove()
     {
 	    if(isset($_POST[self::$PlayerMove]))

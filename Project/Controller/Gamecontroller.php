@@ -34,8 +34,6 @@ class Gamecontroller
     
     public function StartFT3Game()
     {
-        //TODO: Hämta värde ifrån modellen, som specifierar att det är 3 vinster som krävs.
-        //TODO: Tala om detta för vyn,
         $_SESSION["IsgameFT3"] = true;
         $this->Currentgamemode();
         $_SESSION["Currentgamemode"] = "First to three wins is the winner!";
@@ -49,7 +47,6 @@ class Gamecontroller
         $_SESSION["Currentgamemode"] = "First to five wins is the winner!";
         $this->Init();
     }
-    
     
     public function Currentgamemode()
     {

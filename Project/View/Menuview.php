@@ -6,17 +6,13 @@ class Menuview
     private static $Firsttofive ='Menuview::FT5';
     private $Scorearray = array();
     
-    public function __construct(Menumodel $_model, ScoreDAL $_DAL)
+    public function __construct(ScoreDAL $_DAL)
     {
-        $this->model = $_model;
         $this->DAL = $_DAL;
     }
-    public function Response()
+    public function Response() //What gets returned to Layoutview
     {
-        //TODO : Hämta värden från model, skicka till GenerateMenu.
-        //TODO : Knapparna ska starta games
-        //TODO : Status på wins under games FT5/FT3.
-        $this->Scorearray = $this->DAL->Initialize();
+        $this->Scorearray = $this->DAL->Initialize(); //gets current scores
         return $this->GenerateMenu();
     }
     

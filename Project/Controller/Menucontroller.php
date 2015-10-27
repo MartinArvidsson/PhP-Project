@@ -1,13 +1,9 @@
 <?php
 class Menucontroller
 {
-    // private $FT3Message = "First to Three!";
-    // private $FT5Message = "First to five!";
-    
-    public function __construct(Menuview $_View,Menumodel $_Model,Gamecontroller $_GameC)
+    public function __construct(Menuview $_View,Gamecontroller $_GameC)
     {
         $this->View = $_View;
-        $this->Model = $_Model;
         $this->GameC = $_GameC;
     }
     

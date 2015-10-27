@@ -3,7 +3,6 @@ require_once("View/Layoutview.php");
 
 require_once("View/Menuview.php");
 require_once("Controller/Menucontroller.php");
-require_once("Model/Menumodel.php");
 
 require_once("View/Gameview.php");
 require_once("Controller/Gamecontroller.php");
@@ -23,9 +22,8 @@ class Mastercontroller
         $Gameview = new Gameview($Gamemodel); 
         $Gamecontroller = new Gamecontroller($Gameview,$Gamemodel);
         
-        $Menumodel = new Menumodel($DAL);        
-        $Menuview = new Menuview($Menumodel,$DAL);
-        $Menucontroller = new Menucontroller($Menuview,$Menumodel,$Gamecontroller);
+        $Menuview = new Menuview($DAL);
+        $Menucontroller = new Menucontroller($Menuview,$Gamecontroller);
         
         
         if(isset($_GET["Game"]))

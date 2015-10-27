@@ -16,12 +16,29 @@ This will therefore be work in progress that i will look at when all other thing
 1. Navigate to page
 2. Able to start a new game of tic-tac-toe
 3. Able to play the version of tic-tac-toe locally between two players.
+4. Able to win a series
+5. Score is visible on startpage.
 
 ##Optional
 if i have the time
 1. Able to play a version of the game over internet / Shared URL.
-2. Highscore list (?)
-3. More to add at later time possibly...
+2. 
+
+#Testcases
+
+| Testfall      |Krav    | Mål   |Testmetod   | Status |
+| ------------- |:------:| -----:| ----------:| ------:|
+| Sökfunktion   | Man ska kunna söka efter videos | Kunna söka videos | Få samma videos som resultat som att söka på webbsidan| Klar |
+
+| Sökfunktion   | Man ska kunna söka efter videos med ä ö å | Kunna söka videos | Få samma videos som resultat som att söka på webbsidan| Klar |
+
+| Klicka tumnaglar | Klicka bild -> tas till video| Man ska kunna trycka och få videon uppspelad | Tryck på bilden -> spela videon| Klart |
+
+| Spela musikvideo | Klicka bild -> tas till video| Man ska kunna trycka och få videon uppspelad | Tryck på bilden -> spela videon| Klart |
+
+| Spela "vanlig" video | Klicka bild -> tas till video| Man ska kunna trycka och få videon uppspelad | Tryck på bilden -> spela videon| Klart |
+
+| Videospelare  | Videon ska spelas upp och kontrollrarna ska fungera utan problem|Alla funktioner i videospelaren ska fungera| Testa spela video och alla funktionerna ska fungera| Alla relevanta kontrollrar fungerar, fullskärm disablat |
 
 
 #How it ended up / Reflection:

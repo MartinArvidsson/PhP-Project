@@ -32,7 +32,7 @@ if i have the time
 | Gamelogic | Able to only place one brick/Marker | saved one marker after pressed play | Choose multiple marker, then press play | Done |
 | Gamelogic   | Able to win by tic-tac-toe pattern | Able to win by tic-tac-toe pattern | By Putting three of the same marker in a line and get a Player "" Won this round| Done |
 | Datahandling   | After winning 3 games in a FT3 series you should win the series | Win series if wins = 3 | Play the series| Done |
-| Datahanling | After winning a series the score on the startpage should reflect that a player won and update accordingly| Updated score on startpagea | Win series | Done |
+| Datahanling | After winning a series the score on the startpage should reflect that a player won and update accordingly| Updated score on startpage | Win series | Done |
 
 
 

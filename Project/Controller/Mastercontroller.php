@@ -19,12 +19,12 @@ class Mastercontroller
     {
         $Layout = new LayoutView();
         $DAL = new ScoreDAL();
-        $Gamemodel = new Gamemodel();
+        $Gamemodel = new Gamemodel($DAL);
         $Gameview = new Gameview($Gamemodel); 
         $Gamecontroller = new Gamecontroller($Gameview,$Gamemodel);
         
-        $Menumodel = new Menumodel();        
-        $Menuview = new Menuview($Menumodel);
+        $Menumodel = new Menumodel($DAL);        
+        $Menuview = new Menuview($Menumodel,$DAL);
         $Menucontroller = new Menucontroller($Menuview,$Menumodel,$Gamecontroller);
         
         

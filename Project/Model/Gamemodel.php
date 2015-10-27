@@ -6,6 +6,11 @@ class GameModel
     private $boardtoreturn;
     private $totalMoves;
     
+    public function __construct(ScoreDAL $dal)
+    {
+    	$this->DAL = $dal;
+    }
+    
     public function ValidateData($_board,$_totalMoves)
     {
         $this->board = $_board;
@@ -87,6 +92,7 @@ class GameModel
 							//Spelare X vann FT3 Skicka till Menumodel så det kan presentera datan
 							$_SESSION["FT3Winner"] = $Winner;
 							$this->gamemessage = "Player \"$Winner\" you won the game!";
+							$this->DAL->IncreasePlayerXScoreFT3();
 						}
 					return $this->gamemessage;
 				}
@@ -103,6 +109,7 @@ class GameModel
 	
 							$_SESSION["FT3Winner"] = $Winner;
 							$this->gamemessage = "Player \"$Winner\" you won the game!";
+							$this->DAL->IncreasePlayerOScoreFT3();
 						}
 					return $this->gamemessage;
 				}
@@ -123,6 +130,7 @@ class GameModel
 							//Spelare X vann FT5 Skicka till Menumodel så det kan presentera datan
 							$_SESSION["FT5Winner"] = $Winner;
 							$this->gamemessage = "Player \"$Winner\" you won the game!";
+							$this->DAL->IncreasePlayerXScoreFT5();
 						}
 					return $this->gamemessage;
 				}
@@ -140,6 +148,7 @@ class GameModel
 							//Spelare O vann FT5 Skicka till Menumodel så det kan presentera datan
 							$_SESSION["FT5Winner"] = $Winner;
 							$this->gamemessage = "Player \"$Winner\" you won the game!";
+							$this->DAL->IncreasePlayerOScoreFT5 ();
 						}
 					return $this->gamemessage;
 				}

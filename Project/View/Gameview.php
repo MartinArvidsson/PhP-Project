@@ -91,7 +91,7 @@ class Gameview
 				for ($ylength = 0; $ylength < 3; $ylength++)
 				{
 				    $this->Boxcounter ++;
-					$text .= "<td =\"board_cell\">";
+					$text .= "<td id= \"board_cell\">";
 					$board = $this->board->board;
 					if($board[$xlength][$ylength])
 					{
@@ -108,6 +108,7 @@ class Gameview
 					}
 					$text .= "</td>";
                 }
+                $text .= "</tr>";
 			}
 			$text .="
         			    </table>

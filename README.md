@@ -1,5 +1,6 @@
 # PhP-Project
 My PhP Project repository.
+
 #####Live: http://martin-viktor-arvidsson.se/FinalProject/Project/Index.php
 #Vision
 
@@ -49,9 +50,13 @@ My schedule wasn't really matching with reality, i planned on working with gamel
 
 I also felt that my usecases weren't really where i wanted to have them in quality and quantity, so in hindsight i added a few more.
 
+<<<<<<< HEAD
 
 Other than that i feel like i somewhat made what i had planned, it's a tic-tac-toe game and you can play it locally.
 If i had had more time over, i would have done some CSS aswell, at the moment the website doesn't really look that good.
 
+=======
 
+Other than that i feel like i somewhat made what i had planned, it's a tic-tac-toe game and you can play it locally.
+If i had had more time over, i would have done some CSS aswell, at the moment the website doesn't really look that good.
 

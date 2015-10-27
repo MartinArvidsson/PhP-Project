@@ -51,5 +51,5 @@ I also felt that my usecases weren't really where i wanted to have them in quali
 
 
 Other than that i feel like i somewhat made what i had planned, it's a tic-tac-toe game and you can play it locally.
-
+If i had had more time over, i would have done some CSS aswell, at the moment the website doesn't really look that good.
 

@@ -121,8 +121,6 @@ class Gameview
         }
         else
         {
-
-            // if($_SESSION["FT3Winner"] != "")
             if($this->Model->CheckforFT3Winner())
             {
                 $_SESSION["totalmoves"] = 0;
@@ -134,7 +132,6 @@ class Gameview
                 $this->message ="";
                 return $text;   
             }
-            // if($_SESSION["FT5Winner"] != "")
             if($this->Model->CheckforFT5Winner())
             {
                 $_SESSION["totalmoves"] = 0;

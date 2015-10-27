@@ -117,13 +117,13 @@ class GameModel
 					{
 						$_SESSION["FT5Winner"] = "";
 					}					
-					if($_SESSION["PlayerXwinsFT5"] == 5)
-					{
-
-						//Spelare X vann FT5 Skicka till Menumodel så det kan presentera datan
-						$_SESSION["FT5Winner"] = $Winner;
-						$this->gamemessage = "Player \"$Winner\" you won the game!";
-					}
+						if($_SESSION["PlayerXwinsFT5"] == 5)
+						{
+	
+							//Spelare X vann FT5 Skicka till Menumodel så det kan presentera datan
+							$_SESSION["FT5Winner"] = $Winner;
+							$this->gamemessage = "Player \"$Winner\" you won the game!";
+						}
 					return $this->gamemessage;
 				}
 				else
@@ -135,12 +135,12 @@ class GameModel
 						$_SESSION["FT5Winner"] = "";
 						
 					}
-					if($_SESSION["PlayerOwinsFT5"] == 5)
-					{
-						//Spelare O vann FT5 Skicka till Menumodel så det kan presentera datan
-						$_SESSION["FT5Winner"] = $Winner;
-						$this->gamemessage = "Player \"$Winner\" you won the game!";
-					}
+						if($_SESSION["PlayerOwinsFT5"] == 5)
+						{
+							//Spelare O vann FT5 Skicka till Menumodel så det kan presentera datan
+							$_SESSION["FT5Winner"] = $Winner;
+							$this->gamemessage = "Player \"$Winner\" you won the game!";
+						}
 					return $this->gamemessage;
 				}
 			}

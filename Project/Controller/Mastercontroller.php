@@ -9,6 +9,8 @@ require_once("View/Gameview.php");
 require_once("Controller/Gamecontroller.php");
 require_once("Model/Gamemodel.php");
 
+require_once("Model/ScoreDAL.php");
+
 class Mastercontroller
 {
     private $currentgamemessage;
@@ -16,7 +18,7 @@ class Mastercontroller
     public function Startapplication()
     {
         $Layout = new LayoutView();
-        
+        $DAL = new ScoreDAL();
         $Gamemodel = new Gamemodel();
         $Gameview = new Gameview($Gamemodel); 
         $Gamecontroller = new Gamecontroller($Gameview,$Gamemodel);
